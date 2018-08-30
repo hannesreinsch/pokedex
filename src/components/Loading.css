@@ -1,0 +1,28 @@
+.loading {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  margin-top: 100px;
+  animation-name: load;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
+@keyframes load {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.text {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 100;
+  margin-top: 50px;
+}
