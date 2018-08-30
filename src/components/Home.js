@@ -1,16 +1,19 @@
 import React from "react";
 import axios from "axios";
 import Pokeboard from "./Pokeboard";
+import Searchbar from "./Searchbar";
 import "./Home.css";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      search: "",
+      filteredPokemons: [],
       pokemons: [
         {
           id: 12,
-          name: "butterfree",
+          name: "butlerfree",
           base_experience: 178,
           height: 11,
           is_default: true,
@@ -1470,15 +1473,32 @@ class Home extends React.Component {
         }
       ]
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.filterPokemons = this.filterPokemons.bind(this);
   }
 
-  // componentWillMount() {
+  handleInputChange(event) {
+    this.setState({ search: event.target.value }, _ => {
+      this.filterPokemons();
+    });
+  }
+
+  filterPokemons() {
+    let filtered = this.state.pokemons.filter(pokemon => {
+      return pokemon.name
+        .toLowerCase()
+        .includes(this.state.search.toLocaleLowerCase());
+    });
+    this.setState({ filteredPokemons: filtered });
+  }
+
+  // componentDidMount() {
   //   for (let i = 1; i <= 5; i++) {
   //     axios
   //       .get("https://pokeapi.co/api/v2/pokemon/" + i)
-  //       .then(poke => {
+  //       .then(pokemon => {
   //         this.setState({
-  //           pokemons: [...this.state.pokemons, poke.data]
+  //           pokemons: [...this.state.pokemons, pokemon.data]
   //         });
   //       })
   //       .catch(err => console.log(err));
@@ -1489,11 +1509,17 @@ class Home extends React.Component {
     return (
       <div className="container">
         <h1 className="title">Pokédex</h1>
-        {this.state.pokemons.length === 0 ? (
-          <li>Loading...</li>
-        ) : (
-          <Pokeboard pokemons={this.state.pokemons} />
-        )}
+        <Searchbar
+          onChange={this.handleInputChange}
+          value={this.state.search}
+        />
+        <Pokeboard
+          pokemons={
+            this.state.filteredPokemons.length > 0
+              ? this.state.filteredPokemons
+              : this.state.pokemons
+          }
+        />
       </div>
     );
   }
