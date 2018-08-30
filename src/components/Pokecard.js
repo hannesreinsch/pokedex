@@ -10,7 +10,7 @@ const Pokecard = ({ pokemon }) => {
         src={pokemon.sprites.front_default}
         alt={pokemon.name}
       />
-      <p className="name">{pokemon.name}</p>
+      <p className="name">{pokemon.name.replace(/\w/, c => c.toUpperCase())}</p>
     </Link>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Pokeboard from "./Pokeboard";
 import Searchbar from "./Searchbar";
+import Loading from "./Loading";
 import "./Home.css";
 
 class Home extends React.Component {
@@ -1493,7 +1494,7 @@ class Home extends React.Component {
   }
 
   // componentDidMount() {
-  //   for (let i = 1; i <= 5; i++) {
+  //   for (let i = 1; i <= 2; i++) {
   //     axios
   //       .get("https://pokeapi.co/api/v2/pokemon/" + i)
   //       .then(pokemon => {
@@ -1513,13 +1514,18 @@ class Home extends React.Component {
           onChange={this.handleInputChange}
           value={this.state.search}
         />
-        <Pokeboard
-          pokemons={
-            this.state.filteredPokemons.length > 0
-              ? this.state.filteredPokemons
-              : this.state.pokemons
-          }
-        />
+
+        {this.state.pokemons.length > 0 ? (
+          <Pokeboard
+            pokemons={
+              this.state.filteredPokemons.length > 0
+                ? this.state.filteredPokemons
+                : this.state.pokemons
+            }
+          />
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }
