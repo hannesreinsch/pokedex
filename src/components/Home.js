@@ -1476,6 +1476,7 @@ class Home extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.filterPokemons = this.filterPokemons.bind(this);
+    this.renderRightPokeboard = this.renderRightPokeboard.bind(this);
   }
 
   handleInputChange(event) {
@@ -1491,6 +1492,15 @@ class Home extends React.Component {
         .includes(this.state.search.toLocaleLowerCase());
     });
     this.setState({ filteredPokemons: filtered });
+  }
+
+  renderRightPokeboard() {
+    if (this.state.search !== "") {
+      if (this.state.filteredPokemons.length < 0) return;
+      else return <Pokeboard pokemons={this.state.filteredPokemons} />;
+    } else {
+      return <Pokeboard pokemons={this.state.pokemons} />;
+    }
   }
 
   // componentDidMount() {
@@ -1514,15 +1524,8 @@ class Home extends React.Component {
           onChange={this.handleInputChange}
           value={this.state.search}
         />
-
         {this.state.pokemons.length > 0 ? (
-          <Pokeboard
-            pokemons={
-              this.state.filteredPokemons.length > 0
-                ? this.state.filteredPokemons
-                : this.state.pokemons
-            }
-          />
+          this.renderRightPokeboard()
         ) : (
           <Loading />
         )}
