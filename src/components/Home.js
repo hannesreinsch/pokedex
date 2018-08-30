@@ -1503,7 +1503,7 @@ class Home extends React.Component {
     }
   }
 
-  // componentDidMount() {
+  // componentWillMount() {
   //   for (let i = 1; i <= 2; i++) {
   //     axios
   //       .get("https://pokeapi.co/api/v2/pokemon/" + i)
