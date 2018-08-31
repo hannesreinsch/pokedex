@@ -7,6 +7,11 @@
   border: 3px solid black;
 }
 
+.detail-card:hover {
+  color: black;
+  background-color: white;
+}
+
 .pokename {
   text-align: center;
   font-weight: 100;
@@ -16,6 +21,7 @@
   margin: 0;
   width: 100%;
   padding: 2% 0;
+  border-top: 3px solid black;
 }
 
 .pokeimage {
