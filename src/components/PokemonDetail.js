@@ -159,16 +159,16 @@ class PokemonDetail extends React.Component {
     };
   }
 
-  componentWillMount() {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.id}`)
-      .then(pokemon => {
-        this.setState({
-          pokemon: [...this.state.pokemon, pokemon.data]
-        });
-      })
-      .catch(err => console.log(err));
-  }
+  // componentWillMount() {
+  //   axios
+  //     .get(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.id}`)
+  //     .then(pokemon => {
+  //       this.setState({
+  //         pokemon: [...this.state.pokemon, pokemon.data]
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     return (
