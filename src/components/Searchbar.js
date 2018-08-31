@@ -7,7 +7,7 @@ const Searchbar = props => {
       <input
         type="search"
         className="search"
-        placeholder="Pika Pi, Pikachu....."
+        placeholder="Pika, pika..chuuuu"
         onChange={props.onChange}
         value={props.value}
       />
