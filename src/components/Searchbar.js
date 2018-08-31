@@ -6,7 +6,6 @@ const Searchbar = props => {
     <React.Fragment>
       <input
         type="search"
-        name="search"
         className="search"
         placeholder="Pika Pi, Pikachu....."
         onChange={props.onChange}
